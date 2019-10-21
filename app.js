@@ -42,6 +42,7 @@ app.get('/api/v1/tours/:id', (req, res) => {
 
 app.post('/api/v1/tours', (req, res) => {
     console.log(req.body);
+    console.log(tours.length);
     const newId = tours[tours.length-1].id+1;
     console.log(newId);
     const newTour = Object.assign({id: newId}, req.body); //creates a new obj
@@ -51,16 +52,25 @@ app.post('/api/v1/tours', (req, res) => {
             if(err){ 
                 console.log(`Error: ${err}`)
             }else{
-                res
-                    .status(201)
-                    .json({
-                        status: 'success',
-                        data: {
-                            tour: newTour
-                        }
-                    })
+                res.status(201).json({
+                    status: 'success',
+                    data: {
+                        tour: newTour
+                    }
+                });
             }
     });
+});
+
+app.patch('/api/v1/tours/:id', (req, res, next) => {
+    res.status(200).json(
+        {
+            status: 'success',
+            data: {
+                tour: '<Updated tour here>'
+            }
+        }
+    );
 });
 
 
