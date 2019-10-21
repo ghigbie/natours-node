@@ -6,8 +6,16 @@ const PORT = 3000;
 
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
-app.get('/api/v1/tours', (req, res, next) => {
 
+app.get('/api/v1/tours', (req, res, next) => {
+    res
+        .status(200)
+        .json({
+            status: 'sucess',
+            data: {
+                tours
+            }
+        });
 });
 
 
