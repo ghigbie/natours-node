@@ -6,6 +6,15 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log('moo');
+    next();
+});
+
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    next();
+})
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
@@ -13,6 +22,7 @@ const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simpl
 const getAllTours = (req, res, next) => {
     res.status(200).json({
         status: 'sucess',
+        requestedAt: req.requestTime,
         results: tours.length,
         data: {
             tours
@@ -38,7 +48,7 @@ const getTour = (req, res) => {
     }
 };
 
-const createTour = (req, res) => {
+const createTour = (req, res, next) => {
     console.log(req.body);
     console.log(tours.length);
     const newId = tours[tours.length - 1].id + 1;
@@ -95,7 +105,7 @@ const deleteTour = (req, res, next) => {
 
 app
     .route('/api/v1/tours')
-    .get(getTour)
+    .get(getAllTours)
     .post(createTour)
 
 app
