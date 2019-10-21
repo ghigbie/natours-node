@@ -79,6 +79,21 @@ app.patch('/api/v1/tours/:id', (req, res, next) => {
     );
 });
 
+app.delete('/api/v1/tours/:id', (req, res, next) => {
+    if(req.params.id * 1 > tours.length){
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Invalid ID'
+        });
+    }
+
+    res.status(204).json({
+        status: 'success',
+        message: 'Tour was deleted',
+        data: null
+    })
+});
+
 
 app.listen(PORT , () => {
     console.log(`App is running on port ${PORT}`);
