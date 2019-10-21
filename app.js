@@ -4,6 +4,8 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
@@ -17,6 +19,10 @@ app.get('/api/v1/tours', (req, res, next) => {
                 tours
             }
         });
+});
+
+app.post('/api/v1/tours', (req, res, next) => {
+
 });
 
 
