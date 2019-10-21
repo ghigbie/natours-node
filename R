@@ -1,3 +1,0 @@
-# Natours Node App
-
-This repo is dedicated to the Natours app, and it is written in NodeJS and Javascript.
