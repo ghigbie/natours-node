@@ -12,6 +12,7 @@ app.get('/api/v1/tours', (req, res, next) => {
         .status(200)
         .json({
             status: 'sucess',
+            results: tours.length,
             data: {
                 tours
             }
