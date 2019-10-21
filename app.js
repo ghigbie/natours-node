@@ -34,7 +34,7 @@ app.get('/api/v1/tours/:id', (req, res) => {
     res.status(200).json({
         status: 'sucess',
         data: {
-            tour
+                tour
             }
         });
     }
@@ -42,8 +42,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
 
 app.post('/api/v1/tours', (req, res) => {
     console.log(req.body);
-    const newId = tours[tours.length-1] +1;
-    const newTour = Object.assign({id: newId}, req.body); //creates a new object by merging two objects together
+    const newId = tours[tours.length-1].id+1;
+    console.log(newId);
+    const newTour = Object.assign({id: newId}, req.body); //creates a new obj
     tours.push(newTour);
     fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, 
         JSON.stringify(tours), err => {
