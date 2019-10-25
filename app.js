@@ -1,9 +1,11 @@
 const express = require('express');
 const fs = require('fs');
-
+const morgan = require('morgan');
 const app = express();
 const PORT = 3000;
 
+
+//Middleware
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -19,6 +21,8 @@ app.use((req, res, next) => {
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
 
+
+//routehandlers
 const getAllTours = (req, res, next) => {
     res.status(200).json({
         status: 'sucess',
@@ -102,6 +106,8 @@ const deleteTour = (req, res, next) => {
     })
 };
 
+
+//routes 
 
 app
     .route('/api/v1/tours')
