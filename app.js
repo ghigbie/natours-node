@@ -1,9 +1,8 @@
 const express = require('express');
-const fs = require('fs');
 const morgan = require('morgan');
 const app = express();
-const PORT = 3000;
 
+//routes
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
@@ -20,10 +19,4 @@ app.use((req, res, next) => {
     next();
 })
 
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
-
-
-//start server
-app.listen(PORT , () => {
-    console.log(`App is running on port ${PORT}`);
-});
+module.export = app;
