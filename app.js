@@ -6,6 +6,7 @@ const PORT = 3000;
 
 
 //Middleware
+app.use(morgan('dev'));
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -112,14 +113,27 @@ const deleteTour = (req, res, next) => {
 app
     .route('/api/v1/tours')
     .get(getAllTours)
-    .post(createTour)
+    .post(createTour);
 
 app
     .route('/api/v1/tours/id')
     .get(getTour)
     .patch(updateTour)
-    .delete(deleteTour)
+    .delete(deleteTour);
 
+
+app
+    .route('/api/v1/users')
+    .get(getAllUsers)
+    .post(crateUser);
+
+
+app
+    .route('/api/v1/users/:id')
+    .get(getUser)
+    .post(createUser);
+    
+//start server
 app.listen(PORT , () => {
     console.log(`App is running on port ${PORT}`);
 });
