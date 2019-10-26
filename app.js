@@ -158,7 +158,7 @@ app
 app
     .route('/api/v1/users')
     .get(getAllUsers)
-    .post(crateUser);
+    .post(createUser);
 
 app
     .route('/api/v1/users/:id')
